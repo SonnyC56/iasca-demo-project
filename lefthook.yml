@@ -1,0 +1,19 @@
+# Git hooks (installed automatically on `pnpm install`). https://lefthook.dev/configuration/
+pre-commit:
+  parallel: true
+  jobs:
+    - name: prettier
+      glob: '*.{ts,mts,vue,js,mjs,json,md,yml,yaml,css,html}'
+      run: pnpm exec prettier --write {staged_files}
+      stage_fixed: true
+    - name: oxlint
+      glob: '*.{ts,mts,vue,js,mjs}'
+      run: pnpm exec oxlint {staged_files}
+    - name: eslint
+      glob: '*.{ts,mts,vue}'
+      run: pnpm exec eslint --cache {staged_files}
+
+commit-msg:
+  jobs:
+    - name: commitlint
+      run: pnpm exec commitlint --edit {1}

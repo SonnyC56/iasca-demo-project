@@ -1,0 +1,52 @@
+# Local full-stack services: self-hosted Convex backend + dashboard + Mailpit.
+# Usage: cp infra/convex/.env.example infra/convex/.env && docker compose -f infra/convex/docker-compose.yml up -d
+# Then generate an admin key: docker compose -f infra/convex/docker-compose.yml exec backend ./generate_admin_key.sh
+name: iasca-crm
+
+services:
+  backend:
+    image: ghcr.io/get-convex/convex-backend:${CONVEX_BACKEND_TAG:-latest}
+    stop_grace_period: 10s
+    stop_signal: SIGINT
+    ports:
+      - '${PORT:-3210}:3210'
+      - '${SITE_PROXY_PORT:-3211}:3211'
+    volumes:
+      - convex-data:/convex/data
+    environment:
+      - INSTANCE_NAME=${INSTANCE_NAME:-iasca-crm-dev}
+      - INSTANCE_SECRET=${INSTANCE_SECRET:-}
+      # Origins the backend advertises (file URLs, auth callbacks). Set to your LAN address
+      # (e.g. http://192.168.1.20:5173 and http://192.168.1.20:5173/http) for phone testing.
+      - CONVEX_CLOUD_ORIGIN=${CONVEX_CLOUD_ORIGIN:-http://127.0.0.1:3210}
+      - CONVEX_SITE_ORIGIN=${CONVEX_SITE_ORIGIN:-http://127.0.0.1:3211}
+      - DISABLE_BEACON=true
+      - REDACT_LOGS_TO_CLIENT=false
+    healthcheck:
+      test: curl -f http://localhost:3210/version
+      interval: 5s
+      start_period: 10s
+
+  dashboard:
+    image: ghcr.io/get-convex/convex-dashboard:${CONVEX_DASHBOARD_TAG:-latest}
+    stop_grace_period: 10s
+    stop_signal: SIGINT
+    ports:
+      - '${DASHBOARD_PORT:-6791}:6791'
+    environment:
+      - NEXT_PUBLIC_DEPLOYMENT_URL=${NEXT_PUBLIC_DEPLOYMENT_URL:-http://127.0.0.1:3210}
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  mailpit:
+    image: axllent/mailpit:latest
+    ports:
+      - '8025:8025' # web UI
+      - '1025:1025' # SMTP
+    environment:
+      - MP_SMTP_AUTH_ACCEPT_ANY=1
+      - MP_SMTP_AUTH_ALLOW_INSECURE=1
+
+volumes:
+  convex-data:
