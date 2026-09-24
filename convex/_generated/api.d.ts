@@ -8,6 +8,7 @@
  * @module
  */
 
+import type * as crm from "../crm.js";
 import type * as system from "../system.js";
 
 import type {
@@ -17,6 +18,7 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  crm: typeof crm;
   system: typeof system;
 }>;
 
