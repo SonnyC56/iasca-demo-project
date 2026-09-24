@@ -1,0 +1,39 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      vue:
+        patterns: ['vue', 'vue-*', '@vue/*', '@vitejs/*', 'vite', 'vite-*']
+      convex:
+        patterns: ['convex', 'convex-*', '@convex-dev/*']
+      lint-test:
+        patterns:
+          [
+            'eslint*',
+            '@eslint/*',
+            'oxlint',
+            'eslint-plugin-*',
+            'prettier',
+            'vitest',
+            '@vitest/*',
+            '@commitlint/*',
+          ]
+    ignore:
+      # @convex-dev/better-auth 0.12.x breaks at bundle time on better-auth 1.7 (see docs/PLAN.md).
+      - dependency-name: better-auth
+        versions: ['>=1.7.0']
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: ci

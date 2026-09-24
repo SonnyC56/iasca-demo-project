@@ -26,3 +26,20 @@ Thumbs.db
 .idea/
 .vscode/*
 !.vscode/extensions.json
+
+# Vite / build extras
+dist-ssr/
+*.local
+*.tsbuildinfo
+.eslintcache
+*.timestamp-*-*.mjs
+
+# Convex local state
+.convex/
+infra/convex/.env
+infra/convex/data/
+
+# Testing
+test-results/
+playwright-report/
+blob-report/
