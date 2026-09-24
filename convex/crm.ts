@@ -116,3 +116,28 @@ export const seed = mutation({
     return 'seeded'
   },
 })
+
+export const removeCompany = mutation({
+  args: { id: v.id('companies') },
+  handler: async (ctx, { id }) => {
+    const contacts = await ctx.db
+      .query('contacts')
+      .withIndex('by_company', (q) => q.eq('companyId', id))
+      .collect()
+    for (const c of contacts) await ctx.db.patch(c._id, { companyId: undefined })
+    const deals = await ctx.db.query('deals').collect()
+    for (const d of deals)
+      if (d.companyId === id) await ctx.db.patch(d._id, { companyId: undefined })
+    await ctx.db.delete(id)
+  },
+})
+
+export const removeContact = mutation({
+  args: { id: v.id('contacts') },
+  handler: (ctx, { id }) => ctx.db.delete(id),
+})
+
+export const removeDeal = mutation({
+  args: { id: v.id('deals') },
+  handler: (ctx, { id }) => ctx.db.delete(id),
+})
