@@ -15,11 +15,11 @@ importers:
         specifier: ^15.0.0
         version: 15.0.0(vue@3.5.43(typescript@6.0.3))
       convex:
-        specifier: ^1.46.0
-        version: 1.46.0
+        specifier: ^1.47.0
+        version: 1.47.0
       convex-helpers:
-        specifier: ^0.1.124
-        version: 0.1.124(@standard-schema/spec@1.1.0)(convex@1.46.0)(typescript@6.0.3)
+        specifier: ^0.1.128
+        version: 0.1.128(@standard-schema/spec@1.1.0)(convex@1.47.0)(typescript@6.0.3)
       reka-ui:
         specifier: ^2.10.5
         version: 2.10.5(vue@3.5.43(typescript@6.0.3))
@@ -76,8 +76,8 @@ importers:
         specifier: ^0.9.1
         version: 0.9.1(typescript@6.0.3)(vue@3.5.43(typescript@6.0.3))
       convex-test:
-        specifier: ^0.0.59
-        version: 0.0.59(convex@1.46.0)
+        specifier: ^0.0.62
+        version: 0.0.62(convex@1.47.0)
       eslint:
         specifier: ^10.10.0
         version: 10.11.0(jiti@2.7.0)
@@ -1487,12 +1487,12 @@ packages:
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
 
-  convex-helpers@0.1.124:
-    resolution: {integrity: sha512-Gbu/jq6I3x5Y51cXP5c7+CI3t15vX5Xi2G0tOym3rxpBtYqrI+qWwxkqZgJYrHHccY42wZudB8h6kS3fak8Aeg==}
+  convex-helpers@0.1.128:
+    resolution: {integrity: sha512-5n7uKsJrYnnybvuSAWgDQ9d5Avqk4CzFsJ22SXow4tHmVxSUH6qiJCeomWWxcLSfN9t9jpKIXNJiGJrjddS4ng==}
     hasBin: true
     peerDependencies:
       '@standard-schema/spec': ^1.0.0
-      convex: ^1.43.0
+      convex: ^1.46.0
       hono: ^4.0.5
       react: ^17.0.2 || ^18.0.0 || ^19.0.0
       typescript: ^5.5 || ^6.0.0 || ^7.0.0
@@ -1509,13 +1509,13 @@ packages:
       zod:
         optional: true
 
-  convex-test@0.0.59:
-    resolution: {integrity: sha512-2bxjk245RmF3RxrsDR86vbPCzGRnEmpqHbjVbs6bSupt18JadtvOR7Lao2+GcdYJIzny499aloDysYnoFPWP4A==}
+  convex-test@0.0.62:
+    resolution: {integrity: sha512-gvFps/A1JhOlFToZKjStSX8lWQS8oPF4oKm6U5D/ZdmOtfC7bKqw5Ce5ccAf45jvxPKPcFiyWt8JrueE+byB2g==}
     peerDependencies:
       convex: ^1.43.0
 
-  convex@1.46.0:
-    resolution: {integrity: sha512-dhBwDQTZDOhi5SUGAX17EWNehCdNq6/UFrSL0eLZuGfMkdsQbCVWVRZCzbZ5CF+/pgvoGxtApbEoTSipqL4JTw==}
+  convex@1.47.0:
+    resolution: {integrity: sha512-B1z/lOmex7i09NASq8+2WG9rZLzGXXOSkpwGOpaNIvOs4awyW4RMgpVBjt8r2wvvHwhEBEsOr2pGYpulnmAxYQ==}
     engines: {node: '>=20.0.0', npm: '>=7.0.0'}
     hasBin: true
     peerDependencies:
@@ -4176,18 +4176,18 @@ snapshots:
 
   convert-source-map@2.0.0: {}
 
-  convex-helpers@0.1.124(@standard-schema/spec@1.1.0)(convex@1.46.0)(typescript@6.0.3):
+  convex-helpers@0.1.128(@standard-schema/spec@1.1.0)(convex@1.47.0)(typescript@6.0.3):
     dependencies:
-      convex: 1.46.0
+      convex: 1.47.0
     optionalDependencies:
       '@standard-schema/spec': 1.1.0
       typescript: 6.0.3
 
-  convex-test@0.0.59(convex@1.46.0):
+  convex-test@0.0.62(convex@1.47.0):
     dependencies:
-      convex: 1.46.0
+      convex: 1.47.0
 
-  convex@1.46.0:
+  convex@1.47.0:
     dependencies:
       esbuild: 0.27.0
       prettier: 3.9.6
